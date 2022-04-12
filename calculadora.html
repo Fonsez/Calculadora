@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .Fundocal{
+            background-image: linear-gradient(45deg, black, rgb(0, 255, 255));
+            height: 100vh;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+
+        }
+        
+        .Calculadora{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+            padding: 15px;
+
+
+        }
+
+        .obotao{
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: rgb(31, 31, 31);
+            border: none;
+            margin: 3px;
+            color: white;
+
+
+        }
+
+        .obotao:hover{
+            background-color: black;
+
+        }
+
+        #resultado{
+            width: 207px;
+            background-color: white;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+            overflow: auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+
+
+
+        }
+
+        /* barra de rolagem */
+        ::-webkit-scrollbar{
+            height: 4px;
+        }
+
+        /* personalização barra de rolagem  */
+        ::-webkit-scrollbar-track{
+            background-color: rgb(40, 36, 36);
+
+        }
+        /* Personalização alça de rolagem */
+        ::-webkit-scrollbar-thumb{
+            background-color: aqua;
+        }
+
+        ::-webkit-scrollbar-thumb:hover{ 
+            /* :hover é o efeito de passar o mouse sob o item */
+            background-color: rgb(33, 43, 223);
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="Fundocal">
+        <h1>Gabriel Fonseca</h1>
+        <div class="Calculadora">
+
+            <h1>Calculadora</h1>
+            <p id="resultado"></p> 
+            <table>
+                <tr>
+                    <td><button class="obotao" onclick="clean()" >C</button></td>
+                    <td><button class="obotao" onclick="back()" ><</button></td>
+                    <td><button class="obotao" onclick="validadados('/')">/</button></td>
+                    <td><button class="obotao" onclick="validadados('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="obotao" onclick="validadados('7')">7</button></td>
+                    <td><button class="obotao" onclick="validadados('8')">8</button></td>
+                    <td><button class="obotao" onclick="validadados('9')">9</button></td>
+                    <td><button class="obotao" onclick="validadados('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="obotao" onclick="validadados('4')">4</button></td>
+                    <td><button class="obotao" onclick="validadados('5')">5</button></td>
+                    <td><button class="obotao" onclick="validadados('6')">6</button></td>
+                    <td><button class="obotao" onclick="validadados('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="obotao" onclick="validadados('1')">1</button></td>
+                    <td><button class="obotao" onclick="validadados('2')">2</button></td>
+                    <td><button class="obotao" onclick="validadados('3')">3</button></td>
+                    <td rowspan="2"><button class="obotao" style="height: 106px;" onclick="calculogeral()" >=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="obotao" style="width: 106px;" onclick="validadados('0')">0</button></td>
+                    <td><button class="obotao" onclick="validadados('.')" onclick="validadados('.')">.</button></td>
+                </tr>
+            </table>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        function validadados(num){ // função que permite juntar os numeros lado a lado, para evitar quando 1 numero selecionado apagar o já existente.
+           var juncao = document.getElementById('resultado').innerHTML;
+           document.getElementById('resultado').innerHTML = juncao + num;
+        }
+
+        function clean(){ // função que da clean em todos os caracteres
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        function back(){ // função que apaga 1 caractere por 1.
+            var apaga1por1 = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = apaga1por1.substring(0, apaga1por1.length -1)
+
+        }
+
+        function calculogeral(){
+            var calculo = document.getElementById('resultado').innerHTML;
+
+            if(calculo){
+                document.getElementById('resultado').innerHTML = eval(calculo)
+            } // criamos essa varialvel calculo para dar função ao nosso espaço, ou seja se tiver algo dentro de calculo que é nosso 'resultado' = barra de operação, ele vai execultar a operação de computação com o 'eval' 
+            else{
+                document.getElementById('resultado').innerHTML = "Execute alguma operação!!"
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
